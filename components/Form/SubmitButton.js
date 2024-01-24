@@ -1,8 +1,8 @@
 import { Text, Pressable, StyleSheet } from "react-native";
 
-function SubmitButton({ sumbitHandle }) {
+function SubmitButton({ submitHandle }) {
   return (
-    <Pressable style={styles.button} onPress={sumbitHandle}>
+    <Pressable style={styles.button} onPress={submitHandle}>
       <Text style={styles.text}>Add expense</Text>
     </Pressable>
   );

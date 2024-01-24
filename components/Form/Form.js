@@ -3,9 +3,12 @@ import AddExpanseTitle from "./AddExpanseTitle";
 import FormInput from "./FormInput";
 import SubmitButton from "./SubmitButton";
 import DateSelector from "./DateSelector";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigation } from "@react-navigation/native";
 
-function Form({ setParams, submitHandle }) {
+function Form({ setParams, submitHandle, resetParams, data }) {
+  const navigation = useNavigation();
+
   const [expanseName, setExpanseName] = useState();
   const [expansePrice, setExpansePrice] = useState();
   const [date, setDate] = useState(new Date());
@@ -14,7 +17,15 @@ function Form({ setParams, submitHandle }) {
 
   const [datePickerActive, setDatePickerActive] = useState(false);
 
-  setParams(expansePrice, expansePrice, date);
+  useEffect(() => {
+    if (data) {
+      setExpanseName(data.name);
+      setExpansePrice(data.price);
+      setExpanseDate(data.date);
+    }
+  }, []);
+
+  setParams(null, null, date);
 
   function onNumberInputChange(text) {
     setExpansePrice(text);
@@ -37,7 +48,14 @@ function Form({ setParams, submitHandle }) {
       toggleDatePicker();
     }
   }
-
+  function submitHandleWithReset() {
+    if (submitHandle()) {
+      navigation.goBack();
+      setExpanseName("");
+      setExpansePrice("");
+      resetParams();
+    }
+  }
   //date picker
   function toggleDatePicker() {
     setDatePickerActive(!datePickerActive);
@@ -78,7 +96,7 @@ function Form({ setParams, submitHandle }) {
           date={date}
         />
       )}
-      <SubmitButton submitHandle={submitHandle} />
+      <SubmitButton submitHandle={submitHandleWithReset} />
     </View>
   );
 }
