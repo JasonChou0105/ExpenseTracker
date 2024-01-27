@@ -1,8 +1,8 @@
 import "react-native-gesture-handler";
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
-import ExpansesScreen from "./screens/ExpansesScreen";
-import AddExpanseScreen from "./screens/AddExpanseScreen";
+import ExpansesScreen from "./screens/Expanses/ExpansesScreen";
+import AddExpanseScreen from "./screens/Forms/AddExpanseScreen";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { useFonts } from "expo-font";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -11,7 +11,8 @@ import Colors from "./constants/Colors";
 import AppLoading from "expo-app-loading";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
-import EditExpanseScreen from "./screens/EditExpanseScreen";
+import EditExpanseScreen from "./screens/Forms/EditExpanseScreen";
+import AllExpansesScreen from "./screens/Expanses/AllExpansesScreen";
 
 const Stack = createStackNavigator();
 
@@ -38,8 +39,13 @@ export default function App() {
       >
         <Stack.Screen
           options={{ headerShown: false }}
-          name={"AllExpansesScreen"}
+          name={"ExpansesScreen"}
           component={ExpansesScreen}
+        />
+        <Stack.Screen
+          name="AllExpansesScreen"
+          options={{ headerShown: false }}
+          component={AllExpansesScreen}
         />
         <Stack.Screen
           options={{ headerShown: false }}

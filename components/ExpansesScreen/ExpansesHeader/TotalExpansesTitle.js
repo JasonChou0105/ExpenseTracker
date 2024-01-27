@@ -14,9 +14,7 @@ function TotalExpansesTitle({ total }) {
         colors={[Colors.background4, Colors.background2]}
         style={styles.textContainer}
       >
-        <Text style={styles.totalExpansesText}>
-          {total <= 99999999 ? `$${total}` : "no"}
-        </Text>
+        <Text style={styles.totalExpansesText}>{total}</Text>
       </LinearGradient>
     </LinearGradient>
   );
@@ -35,7 +33,7 @@ const styles = StyleSheet.create({
     fontSize: 40,
     color: "#ffffff",
     fontFamily: "tech-mono",
-    textAlign: "center"
+    textAlign: "center",
   },
   textContainer: {
     width: 195,

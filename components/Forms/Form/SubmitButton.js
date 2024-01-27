@@ -1,9 +1,9 @@
 import { Text, Pressable, StyleSheet } from "react-native";
 
-function SubmitButton({ submitHandle }) {
+function SubmitButton({ submitHandle, title }) {
   return (
     <Pressable style={styles.button} onPress={submitHandle}>
-      <Text style={styles.text}>Add expense</Text>
+      <Text style={styles.text}>{title}</Text>
     </Pressable>
   );
 }
@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     paddingVertical: 8,
     paddingHorizontal: 16,
-    margin: 8
+    margin: 16
   },
 });
 

@@ -4,14 +4,12 @@ import getDateInfo from "../../../helperFunctions/getDateInfo";
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
 
-
-
 function ExpansesItem({ expanse }) {
-  const navigation = useNavigation()
-  const [dayOfWeek, day, month, year] = getDateInfo(expanse.date);
+  const navigation = useNavigation();
+  const { dayOfWeek, day, month, year } = getDateInfo(expanse.date);
 
   function onPressHandle() {
-    navigation.navigate("EditExpanseScreen", {id: expanse.id})
+    navigation.navigate("EditExpanseScreen", { id: expanse.id });
   }
 
   return (

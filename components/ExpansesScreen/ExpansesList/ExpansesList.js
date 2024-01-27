@@ -1,18 +1,21 @@
-import { FlatList, View, StyleSheet } from "react-native";
+import { FlatList, View, StyleSheet, Text } from "react-native";
 import ExpansesItem from "./ExpanseItem";
 
 function ExpansesList({ data }) {
-
   function RenderExpanseItem(itemData) {
     return <ExpansesItem expanse={itemData.item} />;
   }
 
   return (
     <View style={styles.rootContainer}>
-      <FlatList
-        data={data}
-        renderItem={(itemData) => RenderExpanseItem(itemData)}
-      />
+      {data.length>0 ? (
+        <FlatList
+          data={data}
+          renderItem={(itemData) => RenderExpanseItem(itemData)}
+        />
+      ) : (
+        <Text style={styles.text}>No expenses yet.</Text>
+      )}
     </View>
   );
 }
@@ -20,6 +23,9 @@ function ExpansesList({ data }) {
 const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
+  },
+  text: {
+    color: "#ffffff",
   },
 });
 

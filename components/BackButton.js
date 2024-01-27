@@ -4,8 +4,6 @@ import { Ionicons } from "@expo/vector-icons";
 
 function BackButton() {
   const navigation = useNavigation();
-  const routes = navigation.getState()?.routes;
-  const prevRouteName = routes[routes.length - 2].name;
 
   function back() {
     navigation.goBack();
@@ -13,7 +11,7 @@ function BackButton() {
   return (
     <Pressable onPress={back} style={styles.backButton}>
       <Ionicons name="arrow-back-outline" size={24} color="white" />
-      <Text style={styles.backText}>back to {prevRouteName}</Text>
+      <Text style={styles.backText}>back</Text>
     </Pressable>
   );
 }

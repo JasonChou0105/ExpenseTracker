@@ -1,8 +1,9 @@
 import { View, StyleSheet } from "react-native";
-import ExpansesList from "../components/ExpansesScreen/ExpansesList/ExpansesList";
-import Background from "../components/Backgrounds/Background";
-import TotalExpansesHeader from "../components/ExpansesScreen/ExpansesHeader/TotalExpansesHeader";
+import ExpansesList from "../../components/ExpansesScreen/ExpansesList/ExpansesList";
+import Background from "../../components/Backgrounds/Background";
+import TotalExpansesHeader from "../../components/ExpansesScreen/ExpansesHeader/TotalExpansesHeader";
 import { useSelector } from "react-redux";
+import AllExpansesButton from "../../components/ExpansesScreen/ExpansesList/AllExpansesButton";
 
 function ExpansesScreen() {
   const expanses = useSelector((state)=>state.expanses.expanses);
@@ -17,8 +18,9 @@ function ExpansesScreen() {
         <TotalExpansesHeader
           totalExpanses={total}
           startDate={new Date(2022, 0, 1)}
-          endDate={new Date(2022, 0, 8)}
+          endDate={new Date(2022, 0, 5)}
         />
+        <AllExpansesButton/>
         <ExpansesList data={expanses} />
       </View>
     </Background>

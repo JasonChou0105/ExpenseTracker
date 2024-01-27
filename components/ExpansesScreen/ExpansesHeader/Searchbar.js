@@ -14,7 +14,7 @@ function SearchBar() {
 const styles = StyleSheet.create({
   rootContainer: {
     flexDirection: "row",
-    width: "80%",
+    width: "90%",
     backgroundColor: Colors.background8,
     borderRadius: 16,
     height: 40,

@@ -1,16 +1,17 @@
 import { View, StyleSheet, Text } from "react-native";
 import TimeDisplay from "./TimeDisplay";
 import getDateInfo from "../../../helperFunctions/getDateInfo";
+import { useSelector } from "react-redux";
+import { setEndDate, setStartDate } from "../../../store/date";
 
-function TimeRange({ startDate, endDate }) {
-  
-  const [ startDayOfWeek, startDay, startMonth, startYear ] = getDateInfo(startDate)
-  const [ endDayOfWeek, endDay, endMonth, endYear ] = getDateInfo(endDate)
+function TimeRange() {
+  const dates = useSelector((state) => state.date.date);
+
   return (
     <View style={styles.container}>
-      <TimeDisplay day={startDayOfWeek} date={`${startYear}/${startMonth}/${startDay}`} />
-      <Text style={styles.text}>- - - - - - </Text>
-      <TimeDisplay day={endDayOfWeek} date={`${endYear}/${endMonth}/${endDay}`} />
+      <TimeDisplay date={dates.startDate} setDate={setStartDate}/>
+      <Text style={styles.text}>- - - - -</Text>
+      <TimeDisplay date={dates.endDate} setDate={setEndDate}/>
     </View>
   );
 }

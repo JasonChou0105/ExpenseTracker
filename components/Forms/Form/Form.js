@@ -2,11 +2,19 @@ import { View, StyleSheet, Platform } from "react-native";
 import AddExpanseTitle from "./AddExpanseTitle";
 import FormInput from "./FormInput";
 import SubmitButton from "./SubmitButton";
-import DateSelector from "./DateSelector";
+
 import { useState, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
+import DateSelector from "../../DateSelector";
 
-function Form({ setParams, submitHandle, resetParams, data }) {
+function Form({
+  setParams,
+  submitHandle,
+  resetParams,
+  title,
+  buttonTitle,
+  data,
+}) {
   const navigation = useNavigation();
 
   const [expanseName, setExpanseName] = useState();
@@ -24,7 +32,6 @@ function Form({ setParams, submitHandle, resetParams, data }) {
       setExpanseDate(data.date);
     }
   }, []);
-
   setParams(null, null, date);
 
   function onNumberInputChange(text) {
@@ -67,7 +74,7 @@ function Form({ setParams, submitHandle, resetParams, data }) {
   }
   return (
     <View style={styles.formContainer}>
-      <AddExpanseTitle>Enter Expense Details</AddExpanseTitle>
+      <AddExpanseTitle>{title}</AddExpanseTitle>
       <FormInput
         type="name"
         title="Expense Name"
@@ -96,7 +103,7 @@ function Form({ setParams, submitHandle, resetParams, data }) {
           date={date}
         />
       )}
-      <SubmitButton submitHandle={submitHandleWithReset} />
+      <SubmitButton submitHandle={submitHandleWithReset} title={buttonTitle} />
     </View>
   );
 }

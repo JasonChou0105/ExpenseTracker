@@ -3,6 +3,7 @@
 class Expanse {
   constructor(params) {
     this.id = params.id;
+    console.log(this.id)
     this.name = params.name;
     this.price = params.price;
     this.date = params.date;

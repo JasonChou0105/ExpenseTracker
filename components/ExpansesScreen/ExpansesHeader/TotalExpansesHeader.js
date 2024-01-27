@@ -5,7 +5,7 @@ import TotalExpansesTitle from "./TotalExpansesTitle";
 import SearchBar from "./Searchbar";
 import MenuIconButton from "../../MenuIconButton";
 
-function TotalExpansesHeader({ totalExpanses, startDate, endDate }) {
+function TotalExpansesHeader({ totalExpanses }) {
   return (
     <View style={styles.rootContainer}>
       <View style={styles.searchContainer}>
@@ -14,7 +14,7 @@ function TotalExpansesHeader({ totalExpanses, startDate, endDate }) {
       </View>
       <View style={styles.expanseContainer}>
         <TotalExpansesTitle total={totalExpanses} />
-        <TimeRange startDate={startDate} endDate={endDate} />
+        <TimeRange />
       </View>
 
       <View style={styles.border}></View>

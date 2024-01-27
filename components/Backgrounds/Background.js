@@ -20,6 +20,7 @@ function Background({ children }) {
 
 const styles = StyleSheet.create({
   background: {
+    ...StyleSheet.absoluteFillObject,
     flex: 1,
   },
 });

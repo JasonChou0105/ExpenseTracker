@@ -1,15 +1,64 @@
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, Pressable } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import Colors from "../../../constants/Colors";
+import { useState } from "react";
+import getDateInfo from "../../../helperFunctions/getDateInfo";
+import DateSelector from "../../DateSelector";
+import { useDispatch } from "react-redux";
+import getDateValue from "../../../helperFunctions/getDateValue";
 
-function TimeDisplay({ date, day }) {
+
+function TimeDisplay({ date, setDate }) {
+  getDateValue(date)
+  const [datePickerActive, setDatePickerActive] = useState();
+  const dispatch = useDispatch();
+
+  const { dayOfWeek, day, month, year } = getDateInfo(date);
+  function onChangeDate({ type }, selectedDate) {
+    if (type == "set") {
+      const currentDate = selectedDate;
+      
+      if (Platform.OS == "android") {
+        toggleDatePicker();
+        dispatch(
+          setDate({
+            date: currentDate.toDateString()
+          })
+        );
+      }
+    } else {
+      toggleDatePicker();
+    }
+  }
+  //date picker
+  function toggleDatePicker() {
+    setDatePickerActive(!datePickerActive);
+  }
+  function confirmIosDate() {
+    setDate(date.toDateString());
+    toggleDatePicker();
+  }
+
+  function submitHandle() {
+    toggleDatePicker()
+  }
   return (
-    <View style={styles.dateContainer}>
-      <View style={styles.dayContainer}>
-        <AntDesign name="calendar" size={15} color="white" />
-        <Text style={styles.dayText}> {day}</Text>
-      </View>
-      <Text style={styles.dateText}> {date}</Text>
+    <View>
+      <Pressable onPress={submitHandle} style={styles.dateContainer}>
+        <View style={styles.dayContainer}>
+          <AntDesign name="calendar" size={15} color="white" />
+          <Text style={styles.dayText}> {dayOfWeek}</Text>
+        </View>
+        <Text style={styles.dateText}> {`${year}/${month}/${day}`}</Text>
+      </Pressable>
+      {datePickerActive && (
+        <DateSelector
+          onChange={onChangeDate}
+          toggleDatePicker={toggleDatePicker}
+          confirmIosDate={confirmIosDate}
+          date={new Date(date)}
+        />
+      )}
     </View>
   );
 }
@@ -26,9 +75,10 @@ const styles = StyleSheet.create({
     fontStyle: "italic",
   },
   dateContainer: {
+    justifyContent: "center",
     borderRadius: 8,
-    paddingVertical: 10,
-    paddingHorizontal: 20,
+    paddingVertical: 8,
+    paddingHorizontal: 16,
     backgroundColor: Colors.highlight1,
     margin: 16,
     borderWidth: 1,
@@ -36,10 +86,10 @@ const styles = StyleSheet.create({
     shadowColor: "#a1a1a1c1",
     shadowRadius: 10,
     shadowOpacity: 0.5,
+    width: 150,
   },
   dayContainer: {
     flexDirection: "row",
-    justifyContent: "center",
     alignItems: "center",
   },
 });

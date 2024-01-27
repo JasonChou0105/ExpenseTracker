@@ -1,7 +1,6 @@
 export default function getDateInfo(date) {
   if (typeof date == "string") {
-    var b = date.split(/\D+/);
-    date = new Date(Date.UTC(b[0], --b[1], b[2], b[3], b[4], b[5], b[6]));
+    date = new Date(date);
   }
   const daysOfWeek = [
     "Sunday",
@@ -12,10 +11,10 @@ export default function getDateInfo(date) {
     "Friday",
     "Saturday",
   ];
-  return [
-    daysOfWeek[date.getDay()],
-    date.getDate(),
-    date.getMonth() + 1,
-    date.getFullYear(),
-  ];
+  return {
+    dayOfWeek: daysOfWeek[date.getDay()],
+    day: date.getDate(),
+    month: date.getMonth() + 1,
+    year: date.getFullYear(),
+  };
 }
