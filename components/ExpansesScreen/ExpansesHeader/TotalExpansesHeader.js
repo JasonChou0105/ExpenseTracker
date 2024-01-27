@@ -4,8 +4,11 @@ import TimeRange from "./TimeRange";
 import TotalExpansesTitle from "./TotalExpansesTitle";
 import SearchBar from "./Searchbar";
 import MenuIconButton from "../../MenuIconButton";
+import { useSelector } from "react-redux";
 
 function TotalExpansesHeader({ totalExpanses }) {
+  const dates = useSelector((state) => state.date.date);
+
   return (
     <View style={styles.rootContainer}>
       <View style={styles.searchContainer}>
@@ -14,7 +17,7 @@ function TotalExpansesHeader({ totalExpanses }) {
       </View>
       <View style={styles.expanseContainer}>
         <TotalExpansesTitle total={totalExpanses} />
-        <TimeRange />
+        <TimeRange startDate={dates.startDate} endDate={dates.endDate} />
       </View>
 
       <View style={styles.border}></View>

@@ -4,6 +4,8 @@ import { addExpanse } from "../../store/expanses";
 import BackButton from "../BackButton";
 import Form from "./Form/Form";
 import { useSelector } from "react-redux";
+import { setStartDate } from "../../store/date";
+import getMinDate from "../../helperFunctions/getMinDate";
 
 function AddExpanseForm() {
   const dispatch = useDispatch();
@@ -34,6 +36,11 @@ function AddExpanseForm() {
       dispatch(
         addExpanse({
           params: params,
+        })
+      );
+      dispatch(
+        setStartDate({
+          date: getMinDate(expanses),
         })
       );
       return true;

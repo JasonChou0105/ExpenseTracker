@@ -1,18 +1,23 @@
-import "react-native-gesture-handler";
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+//components
 import ExpansesScreen from "./screens/Expanses/ExpansesScreen";
 import AddExpanseScreen from "./screens/Forms/AddExpanseScreen";
-import { createDrawerNavigator } from "@react-navigation/drawer";
-import { useFonts } from "expo-font";
-import { createStackNavigator } from "@react-navigation/stack";
-import { NavigationContainer } from "@react-navigation/native";
 import Colors from "./constants/Colors";
 import AppLoading from "expo-app-loading";
-import { Provider } from "react-redux";
-import { store } from "./store/store";
 import EditExpanseScreen from "./screens/Forms/EditExpanseScreen";
 import AllExpansesScreen from "./screens/Expanses/AllExpansesScreen";
+import { StatusBar } from "expo-status-bar";
+
+//hooks
+import { useFonts } from "expo-font";
+
+//nav
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import { createStackNavigator } from "@react-navigation/stack";
+import { NavigationContainer } from "@react-navigation/native";
+
+//redux
+import { store } from "./store/store";
+import { Provider } from "react-redux";
 
 const Stack = createStackNavigator();
 
@@ -56,29 +61,27 @@ export default function App() {
     );
   }
   return (
-    <>
+    <Provider store={store}>
       <StatusBar style="light" />
-      <Provider store={store}>
-        <NavigationContainer>
-          <Stack.Navigator
-            screenOptions={{
-              headerStyle: { backgroundColor: Colors.background1 },
-              headerTintColor: "white",
-            }}
-          >
-            <Stack.Screen
-              name="drawer"
-              options={{ headerShown: false }}
-              component={DrawerNavigator}
-            />
-            <Stack.Screen
-              name="EditExpanseScreen"
-              options={{ headerShown: false }}
-              component={EditExpanseScreen}
-            />
-          </Stack.Navigator>
-        </NavigationContainer>
-      </Provider>
-    </>
+      <NavigationContainer>
+        <Stack.Navigator
+          screenOptions={{
+            headerStyle: { backgroundColor: Colors.background1 },
+            headerTintColor: "white",
+          }}
+        >
+          <Stack.Screen
+            name="drawer"
+            options={{ headerShown: false }}
+            component={DrawerNavigator}
+          />
+          <Stack.Screen
+            name="EditExpanseScreen"
+            options={{ headerShown: false }}
+            component={EditExpanseScreen}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }

@@ -2,24 +2,29 @@ import { createSlice } from "@reduxjs/toolkit";
 import getDateValue from "../helperFunctions/getDateValue";
 
 export const dateSlice = createSlice({
-  name: "expanses",
+  name: "date",
   initialState: {
     date: {
-      startDate: new Date(0).toDateString(),
+      startDate: new Date().toDateString(),
       endDate: new Date().toDateString(),
     },
   },
   reducers: {
     setStartDate: (state, action) => {
-      
-      if (getDateValue(action.payload.date)<=getDateValue(state.date.endDate)) {
+      var startDateValue = getDateValue(action.payload.date);
+      var endDateValue = getDateValue(state.date.endDate);
+
+      if (startDateValue <= endDateValue) {
         state.date.startDate = action.payload.date;
-      } else {
-        console.log("AHHHHHHHHH");
       }
     },
     setEndDate: (state, action) => {
-      state.date.endDate = action.payload.date;
+      var endDateValue = getDateValue(action.payload.date);
+      var startDateValue = getDateValue(state.date.endDate);
+
+      if (startDateValue <= endDateValue) {
+        state.date.endDate = action.payload.date;
+      }
     },
   },
 });

@@ -17,6 +17,6 @@ export default function getDateValue(date) {
     leapYear +
     daysInMonth[parseInt(month - 1)] +
     parseInt(day);
-  console.log(total);
+    
   return total;
 }

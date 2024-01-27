@@ -5,18 +5,19 @@ import BackButton from "../../components/BackButton";
 import Wave from "../../components/Backgrounds/Wave";
 import { View, StyleSheet } from "react-native";
 import TimeRange from "../../components/ExpansesScreen/ExpansesHeader/TimeRange";
+import getMinDate from "../../helperFunctions/getMinDate";
 
 function AllExpansesScreen() {
   const expanses = useSelector((state) => state.expanses.expanses);
+  const dates = useSelector((state) => state.date.date);
 
   return (
     <Background>
       <BackButton />
       <View style={styles.listContainer}>
-        <TimeRange />
+        <TimeRange startDate={dates.startDate} endDate={dates.endDate}/>
         <ExpansesList data={expanses} />
       </View>
-      <Wave />
     </Background>
   );
 }
@@ -26,7 +27,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
-        marginTop: 24
+        marginVertical: 24
     }
 })
 

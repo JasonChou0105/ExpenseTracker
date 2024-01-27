@@ -5,12 +5,15 @@ import TotalExpansesHeader from "../../components/ExpansesScreen/ExpansesHeader/
 import { useSelector } from "react-redux";
 import AllExpansesButton from "../../components/ExpansesScreen/ExpansesList/AllExpansesButton";
 
+
 function ExpansesScreen() {
-  const expanses = useSelector((state)=>state.expanses.expanses);
+  const expanses = useSelector((state) => state.expanses.expanses);
+
   const total = expanses.reduce(
     (curTotal, curExpanse) => curTotal + parseFloat(curExpanse.price),
-    0,
+    0
   );
+
 
   return (
     <Background>
@@ -20,7 +23,7 @@ function ExpansesScreen() {
           startDate={new Date(2022, 0, 1)}
           endDate={new Date(2022, 0, 5)}
         />
-        <AllExpansesButton/>
+        <AllExpansesButton />
         <ExpansesList data={expanses} />
       </View>
     </Background>

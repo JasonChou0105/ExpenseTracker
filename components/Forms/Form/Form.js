@@ -60,6 +60,7 @@ function Form({
       navigation.goBack();
       setExpanseName("");
       setExpansePrice("");
+      setExpanseDate(new Date().toDateString())
       resetParams();
     }
   }

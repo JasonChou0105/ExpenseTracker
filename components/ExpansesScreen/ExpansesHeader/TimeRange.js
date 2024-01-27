@@ -4,14 +4,13 @@ import getDateInfo from "../../../helperFunctions/getDateInfo";
 import { useSelector } from "react-redux";
 import { setEndDate, setStartDate } from "../../../store/date";
 
-function TimeRange() {
-  const dates = useSelector((state) => state.date.date);
+function TimeRange({startDate, endDate}) {
 
   return (
     <View style={styles.container}>
-      <TimeDisplay date={dates.startDate} setDate={setStartDate}/>
+      <TimeDisplay date={startDate} setDate={setStartDate}/>
       <Text style={styles.text}>- - - - -</Text>
-      <TimeDisplay date={dates.endDate} setDate={setEndDate}/>
+      <TimeDisplay date={endDate} setDate={setEndDate}/>
     </View>
   );
 }

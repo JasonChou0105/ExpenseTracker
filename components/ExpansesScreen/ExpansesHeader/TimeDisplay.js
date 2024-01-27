@@ -7,9 +7,8 @@ import DateSelector from "../../DateSelector";
 import { useDispatch } from "react-redux";
 import getDateValue from "../../../helperFunctions/getDateValue";
 
-
 function TimeDisplay({ date, setDate }) {
-  getDateValue(date)
+  getDateValue(date);
   const [datePickerActive, setDatePickerActive] = useState();
   const dispatch = useDispatch();
 
@@ -17,12 +16,12 @@ function TimeDisplay({ date, setDate }) {
   function onChangeDate({ type }, selectedDate) {
     if (type == "set") {
       const currentDate = selectedDate;
-      
+
       if (Platform.OS == "android") {
         toggleDatePicker();
         dispatch(
           setDate({
-            date: currentDate.toDateString()
+            date: currentDate.toDateString(),
           })
         );
       }
@@ -40,7 +39,7 @@ function TimeDisplay({ date, setDate }) {
   }
 
   function submitHandle() {
-    toggleDatePicker()
+    toggleDatePicker();
   }
   return (
     <View>
