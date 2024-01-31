@@ -1,4 +1,4 @@
-import { View, StyleSheet, Image } from "react-native";
+import { View, StyleSheet, Image, SafeAreaView } from "react-native";
 import Colors from "../../../constants/Colors";
 import TimeRange from "./TimeRange";
 import TotalExpansesTitle from "./TotalExpansesTitle";
@@ -10,7 +10,7 @@ function TotalExpansesHeader({ totalExpanses }) {
   const dates = useSelector((state) => state.date.date);
 
   return (
-    <View style={styles.rootContainer}>
+    <SafeAreaView style={styles.rootContainer}>
       <View style={styles.searchContainer}>
         <MenuIconButton/>
         <SearchBar />
@@ -21,7 +21,7 @@ function TotalExpansesHeader({ totalExpanses }) {
       </View>
 
       <View style={styles.border}></View>
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -34,19 +34,20 @@ const styles = StyleSheet.create({
   border:{
     borderBottomWidth: 0.5,
     borderBottomColor: Colors.background7,
-    width: "65%",
+    width: "80%",
+    marginBottom: 16
   },
   rootContainer: {
-    width: "100%",
+    width: "90%",
     justifyContent: "center",
     alignItems: "center",
     padding: 16,
-    marginTop: 24,
   },
   searchContainer: {
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
+    marginTop: 24,
   },
 });
 

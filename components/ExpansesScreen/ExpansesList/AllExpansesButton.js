@@ -1,33 +1,34 @@
-import { Pressable, Text, StyleSheet } from 'react-native'
 import { useNavigation } from "@react-navigation/native";
+import Button from './Button';
+import { useDispatch, useSelector } from "react-redux";
+import { setEndDate, setStartDate } from "../../../store/date";
+import getMinDate from "../../../helperFunctions/getMinDate";
 
 function AllExpansesButton() {
     const navigation = useNavigation()
+    const dispatch = useDispatch()
+    const expanses = useSelector((state) => state.expanses.expanses);
+
     function onPressHandle(){
+        if (expanses.length > 0) {
+            dispatch(
+              setStartDate({
+                date: getMinDate(expanses),
+              })
+            );
+            dispatch(
+              setEndDate({
+                date: new Date().toDateString(),
+              })
+            );
+          }
         navigation.navigate("AllExpansesScreen")
     }
 
     return ( 
-        <Pressable style={styles.button} onPress={onPressHandle}>
-            <Text style={styles.text}>See all expenses</Text>
-        </Pressable>
+        <Button onPress={onPressHandle}>See All</Button>
      );
 }
 
-const styles = StyleSheet.create({
-    button: {
-        borderWidth: 1,
-        borderColor: "#ffffff",
-        borderRadius: 8,
-        paddingVertical: 8,
-        paddingHorizontal: 16,
-        margin: 8,
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    text: {
-        color: "#ffffff"
-    }
-})
 
 export default AllExpansesButton;

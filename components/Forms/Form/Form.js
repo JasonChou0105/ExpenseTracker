@@ -31,7 +31,7 @@ function Form({
       setExpansePrice(data.price);
       setExpanseDate(data.date);
     }
-  }, []);
+  }, [data]);
   setParams(null, null, date);
 
   function onNumberInputChange(text) {
@@ -57,11 +57,11 @@ function Form({
   }
   function submitHandleWithReset() {
     if (submitHandle()) {
-      navigation.goBack();
       setExpanseName("");
       setExpansePrice("");
       setExpanseDate(new Date().toDateString())
       resetParams();
+      navigation.goBack();
     }
   }
   //date picker

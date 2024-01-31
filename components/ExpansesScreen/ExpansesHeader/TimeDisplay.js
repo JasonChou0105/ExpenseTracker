@@ -1,14 +1,11 @@
 import { View, StyleSheet, Text, Pressable } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
-import Colors from "../../../constants/Colors";
 import { useState } from "react";
 import getDateInfo from "../../../helperFunctions/getDateInfo";
 import DateSelector from "../../DateSelector";
 import { useDispatch } from "react-redux";
-import getDateValue from "../../../helperFunctions/getDateValue";
 
 function TimeDisplay({ date, setDate }) {
-  getDateValue(date);
   const [datePickerActive, setDatePickerActive] = useState();
   const dispatch = useDispatch();
 
@@ -78,7 +75,6 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     paddingVertical: 8,
     paddingHorizontal: 16,
-    backgroundColor: Colors.highlight1,
     margin: 16,
     borderWidth: 1,
     borderColor: "#a1a1a1c1",

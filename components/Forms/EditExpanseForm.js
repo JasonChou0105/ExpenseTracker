@@ -3,6 +3,7 @@ import Form from "./Form/Form";
 import { StyleSheet, View } from "react-native";
 import BackButton from "../BackButton";
 import { editExpanse } from "../../store/expanses";
+import RemoveButton from "./Form/RemoveButton";
 
 function EditExpanseForm({ id }) {
   const dispatch = useDispatch();
@@ -10,19 +11,25 @@ function EditExpanseForm({ id }) {
   const expanses = useSelector((state) => state.expanses.expanses);
   const expanse = expanses.find((item) => item.id === id);
 
-
-  const data = { name: expanse.name, price: expanse.price, date: expanse.date, id: expanse.id };
+  var data = {}
+  if (expanse) {
+    data = {
+      name: expanse.name,
+      price: expanse.price,
+      date: expanse.date,
+      id: expanse.id,
+    };
+  }
   console.log(data);
 
-  var params = {...data};
+  var params = { ...data };
 
   function setParams(expanseName, expansePrice, date) {
-    console.log(expanseName);
     params = {
       id: data.id,
-      name: expanseName!==null ? expanseName : params.name,
-      price: expansePrice!==null ? expansePrice : params.price,
-      date: date!==null ? date.toDateString() : params.date,
+      name: expanseName !== null ? expanseName : params.name,
+      price: expansePrice !== null ? expansePrice : params.price,
+      date: date !== null ? date.toDateString() : params.date,
     };
   }
   function resetParams() {
@@ -52,6 +59,7 @@ function EditExpanseForm({ id }) {
   return (
     <View style={styles.rootContainer}>
       <BackButton />
+      <RemoveButton id={id} name={data.name}/>
       <Form
         submitHandle={editExpanseHandle}
         setParams={setParams}

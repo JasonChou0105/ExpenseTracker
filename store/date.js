@@ -5,7 +5,9 @@ export const dateSlice = createSlice({
   name: "date",
   initialState: {
     date: {
-      startDate: new Date().toDateString(),
+      startDate: new Date(
+        new Date().setDate(new Date().getDate() - 7)
+      ).toDateString(),
       endDate: new Date().toDateString(),
     },
   },
@@ -20,7 +22,7 @@ export const dateSlice = createSlice({
     },
     setEndDate: (state, action) => {
       var endDateValue = getDateValue(action.payload.date);
-      var startDateValue = getDateValue(state.date.endDate);
+      var startDateValue = getDateValue(state.date.startDate);
 
       if (startDateValue <= endDateValue) {
         state.date.endDate = action.payload.date;

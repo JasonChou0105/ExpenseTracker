@@ -1,7 +1,5 @@
 import { View, StyleSheet, Text } from "react-native";
 import TimeDisplay from "./TimeDisplay";
-import getDateInfo from "../../../helperFunctions/getDateInfo";
-import { useSelector } from "react-redux";
 import { setEndDate, setStartDate } from "../../../store/date";
 
 function TimeRange({startDate, endDate}) {
