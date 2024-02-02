@@ -2,11 +2,11 @@ import { Pressable, Text, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 
-function BackButton() {
+function BackButton({setModalVisible}) {
   const navigation = useNavigation();
 
   function back() {
-    navigation.goBack();
+    setModalVisible(false)
   }
   return (
     <Pressable onPress={back} style={styles.backButton}>

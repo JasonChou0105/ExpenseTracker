@@ -11,10 +11,24 @@ export default function getDateInfo(date) {
     "Friday",
     "Saturday",
   ];
+  months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
   return {
     dayOfWeek: daysOfWeek[date.getDay()],
     day: date.getDate(),
-    month: date.getMonth() + 1,
+    month: months[date.getMonth()],
     year: date.getFullYear(),
   };
 }

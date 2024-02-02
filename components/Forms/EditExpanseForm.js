@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import Form from "./Form/Form";
 import { StyleSheet, View } from "react-native";
-import BackButton from "../BackButton";
+import BackButton from "./Form/BackButton";
 import { editExpanse } from "../../store/expanses";
 import RemoveButton from "./Form/RemoveButton";
 
-function EditExpanseForm({ id }) {
+function EditExpanseForm({ id, setModalVisible }) {
   const dispatch = useDispatch();
 
   const expanses = useSelector((state) => state.expanses.expanses);
@@ -58,7 +58,7 @@ function EditExpanseForm({ id }) {
 
   return (
     <View style={styles.rootContainer}>
-      <BackButton />
+      <BackButton setModalVisible={setModalVisible}/>
       <RemoveButton id={id} name={data.name}/>
       <Form
         submitHandle={editExpanseHandle}

@@ -1,7 +1,7 @@
 import { View, StyleSheet } from "react-native";
 import { useDispatch } from "react-redux";
 import { addExpanse } from "../../store/expanses";
-import BackButton from "../BackButton";
+import BackButton from "./Form/BackButton";
 import Form from "./Form/Form";
 import { useSelector } from "react-redux";
 

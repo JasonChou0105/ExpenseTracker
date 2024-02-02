@@ -4,16 +4,11 @@ import getDateInfo from "../../../helperFunctions/getDateInfo";
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
 
-function ExpansesItem({ expanse }) {
-  const navigation = useNavigation();
+function ExpansesItem({ expanse, onPressHandle }) {
   const { dayOfWeek, day, month, year } = getDateInfo(expanse.date);
 
-  function onPressHandle() {
-    navigation.navigate("EditExpanseScreen", { id: expanse.id });
-  }
-
   return (
-    <Pressable onPress={onPressHandle}>
+    <Pressable onPress={onPressHandle.bind(this, expanse.id)}>
       <LinearGradient
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
@@ -24,7 +19,7 @@ function ExpansesItem({ expanse }) {
           <Text style={styles.itemText}>{expanse.name}</Text>
           <Text
             style={styles.dateText}
-          >{`${year}/${month}/${day} - ${dayOfWeek}`}</Text>
+          >{`${dayOfWeek} ${month} ${day}, ${year}`}</Text>
         </View>
         <View style={styles.priceContainer}>
           <Text style={styles.priceText}>${expanse.price}</Text>

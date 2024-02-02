@@ -11,10 +11,6 @@ function TotalExpansesHeader({ totalExpanses }) {
 
   return (
     <SafeAreaView style={styles.rootContainer}>
-      <View style={styles.searchContainer}>
-        <MenuIconButton/>
-        <SearchBar />
-      </View>
       <View style={styles.expanseContainer}>
         <TotalExpansesTitle total={totalExpanses} />
         <TimeRange startDate={dates.startDate} endDate={dates.endDate} />
@@ -32,10 +28,11 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   border:{
-    borderBottomWidth: 0.5,
+    borderBottomWidth: 1,
+    opacity: 0.5,
     borderBottomColor: Colors.background7,
-    width: "80%",
-    marginBottom: 16
+    width: "100%",
+    margin: 16
   },
   rootContainer: {
     width: "90%",

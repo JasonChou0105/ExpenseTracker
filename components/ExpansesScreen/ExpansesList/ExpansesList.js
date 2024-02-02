@@ -1,15 +1,26 @@
-import { FlatList, View, StyleSheet, Text } from "react-native";
+import { FlatList, View, StyleSheet, Text, Modal } from "react-native";
 import ExpansesItem from "./ExpanseItem";
 import AllExpansesButton from "./AllExpansesButton";
 import AddExpanseButton from "./AddExpanseButton";
 import { useSelector } from "react-redux";
 import getDateValue from "../../../helperFunctions/getDateValue";
+import EditExpanseScreen from "../../../screens/Forms/EditExpanseScreen";
+import { useState } from "react";
 
 function ExpansesList({ data, renderAll }) {
   const dates = useSelector((state) => state.date.date);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [ID, setID] = useState();
+
   function RenderExpanseItem(itemData) {
-    return <ExpansesItem expanse={itemData.item} />;
+    return <ExpansesItem expanse={itemData.item} onPressHandle={onPress} />;
   }
+  function onPress(id) {
+    console.log(id);
+    setModalVisible(true);
+    setID(id);
+  }
+
   data = data.filter((item) => {
     const itemVal = getDateValue(item.date);
     return (
@@ -19,6 +30,17 @@ function ExpansesList({ data, renderAll }) {
   });
   return (
     <View style={styles.rootContainer}>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          setModalVisible(!modalVisible);
+        }}
+      >
+        <EditExpanseScreen id={ID} setModalVisible={setModalVisible}/>
+      </Modal>
       <View style={styles.buttonContainer}>
         {renderAll && <AllExpansesButton />}
         <AddExpanseButton />

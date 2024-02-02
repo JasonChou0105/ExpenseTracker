@@ -5,7 +5,7 @@ import getDateInfo from "../../../helperFunctions/getDateInfo";
 import DateSelector from "../../DateSelector";
 import { useDispatch } from "react-redux";
 
-function TimeDisplay({ date, setDate }) {
+function TimeDisplay({ date, setDate, title }) {
   const [datePickerActive, setDatePickerActive] = useState();
   const dispatch = useDispatch();
 
@@ -40,13 +40,21 @@ function TimeDisplay({ date, setDate }) {
   }
   return (
     <View>
-      <Pressable onPress={submitHandle} style={styles.dateContainer}>
+      <Pressable
+        onPress={submitHandle}
+        style={[
+          styles.dateContainer,
+          title == "From" ? styles.borderRadiusLeft : styles.borderRadiusRight,
+        ]}
+      >
+        <Text style={styles.titleText}>{title}: </Text>
         <View style={styles.dayContainer}>
           <AntDesign name="calendar" size={15} color="white" />
-          <Text style={styles.dayText}> {dayOfWeek}</Text>
+          <Text style={styles.mainText}> {`${month} ${day}`}</Text>
         </View>
-        <Text style={styles.dateText}> {`${year}/${month}/${day}`}</Text>
+        <Text style={styles.subText}> {`${dayOfWeek} ${year}`}</Text>
       </Pressable>
+
       {datePickerActive && (
         <DateSelector
           onChange={onChangeDate}
@@ -60,28 +68,35 @@ function TimeDisplay({ date, setDate }) {
 }
 
 const styles = StyleSheet.create({
-  dayText: {
+  mainText: {
     color: "#ffffff",
     fontWeight: "bold",
     fontSize: 18,
   },
-  dateText: {
-    fontSize: 13,
+  titleText: {
+    color: "#ffffff",
+  },
+  subText: {
+    fontSize: 11,
     color: "#ffffff",
     fontStyle: "italic",
   },
   dateContainer: {
     justifyContent: "center",
-    borderRadius: 8,
     paddingVertical: 8,
     paddingHorizontal: 16,
-    margin: 16,
-    borderWidth: 1,
-    borderColor: "#a1a1a1c1",
-    shadowColor: "#a1a1a1c1",
-    shadowRadius: 10,
-    shadowOpacity: 0.5,
     width: 150,
+    margin: 4,
+    borderWidth: 1,
+    borderColor: "#ffffff",
+  },
+  borderRadiusLeft: {
+    borderBottomLeftRadius: 25,
+    borderTopLeftRadius: 25,
+  },
+  borderRadiusRight: {
+    borderBottomRightRadius: 25,
+    borderTopRightRadius: 25,
   },
   dayContainer: {
     flexDirection: "row",

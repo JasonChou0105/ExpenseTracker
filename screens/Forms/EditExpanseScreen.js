@@ -3,10 +3,10 @@ import Background from "../../components/Backgrounds/Background";
 import Wave from "../../components/Backgrounds/Wave";
 import EditExpanseForm from "../../components/Forms/EditExpanseForm";
 
-function EditExpanseScreen({ route }) {
+function EditExpanseScreen({ id, setModalVisible }) {
   return (
     <Background>
-      <EditExpanseForm id={route.params.id}/>
+      <EditExpanseForm id={id} setModalVisible={setModalVisible}/>
       <Wave />
     </Background>
   );

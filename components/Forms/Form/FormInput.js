@@ -1,5 +1,4 @@
-import { StyleSheet, View, Text, Pressable } from "react-native";
-import { TextInput } from "react-native-gesture-handler";
+import { StyleSheet, View, Text, Pressable, TextInput } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
 
