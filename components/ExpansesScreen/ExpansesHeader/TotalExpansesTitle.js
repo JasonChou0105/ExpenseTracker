@@ -22,7 +22,7 @@ function TotalExpansesTitle({ total }) {
 
 const styles = StyleSheet.create({
   totalExpansesContainer: {
-    margin: 16,
+    marginBottom: 16,
     borderRadius: 100,
     width: 200,
     height: 200,

@@ -4,7 +4,7 @@ import Button from './Button';
 function AddExpanseButton() {
     const navigation = useNavigation()
     function onPressHandle(){
-        navigation.navigate("AddExpanseScreen")
+        navigation.navigate("AddExpanse")
     }
 
     return ( 

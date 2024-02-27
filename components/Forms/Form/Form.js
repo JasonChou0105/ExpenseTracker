@@ -13,6 +13,7 @@ function Form({
   resetParams,
   title,
   buttonTitle,
+  setModalVisable,
   data,
 }) {
   const navigation = useNavigation();
@@ -61,7 +62,11 @@ function Form({
       setExpansePrice("");
       setExpanseDate(new Date().toDateString())
       resetParams();
-      navigation.goBack();
+      if(setModalVisable){
+        setModalVisable(false);
+      }else{
+        navigation.goBack();
+      }
     }
   }
   //date picker

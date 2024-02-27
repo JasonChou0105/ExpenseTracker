@@ -32,7 +32,7 @@ function RecentExpanses() {
     };
   }, [expanses, navigation]);
 
-  return <ExpansesScreen />;
+  return <ExpansesScreen title="Past 7 Days"/>;
 }
 
 export default RecentExpanses;

@@ -1,9 +1,7 @@
 import { Pressable, Text, StyleSheet } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 
 function BackButton({setModalVisible}) {
-  const navigation = useNavigation();
 
   function back() {
     setModalVisible(false)
@@ -11,7 +9,7 @@ function BackButton({setModalVisible}) {
   return (
     <Pressable onPress={back} style={styles.backButton}>
       <Ionicons name="arrow-back-outline" size={24} color="white" />
-      <Text style={styles.backText}>back</Text>
+      <Text style={styles.backText}> back</Text>
     </Pressable>
   );
 }

@@ -2,11 +2,9 @@ import { Ionicons } from "@expo/vector-icons";
 import { Alert, Pressable, StyleSheet, Text } from "react-native";
 import { useDispatch } from "react-redux";
 import { removeExpanse } from "../../../store/expanses";
-import { useNavigation } from "@react-navigation/native";
 
-function RemoveButton({ id, name }) {
+function RemoveButton({ id, name, setModelVisable }) {
   const dispatch = useDispatch();
-  const navigation = useNavigation();
 
   function confirmDelete() {
     Alert.alert(`Are you sure you want to delete ${name}?`, 'Deleted expenses cannot be recovered', [
@@ -21,8 +19,7 @@ function RemoveButton({ id, name }) {
   }
 
   function removeHandle() {
-    navigation.goBack();
-
+    setModelVisable(false);
     dispatch(removeExpanse({ id: id }));
   }
 

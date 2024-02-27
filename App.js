@@ -1,11 +1,9 @@
 //components
-import ExpansesScreen from "./screens/Expanses/ExpansesScreen";
 import AddExpanseScreen from "./screens/Forms/AddExpanseScreen";
-import Colors from "./constants/Colors";
 import AppLoading from "expo-app-loading";
-import EditExpanseScreen from "./screens/Forms/EditExpanseScreen";
 import AllExpansesScreen from "./screens/Expanses/AllExpansesScreen";
 import { StatusBar } from "expo-status-bar";
+import { AntDesign } from "@expo/vector-icons";
 
 //hooks
 import { useFonts } from "expo-font";
@@ -20,6 +18,7 @@ import { store } from "./store/store";
 import { Provider } from "react-redux";
 import AllTimeExpanses from "./screens/Expanses/AllTimeExpanses";
 import RecentExpanses from "./screens/Expanses/RecentExpanses";
+import Colors from "./constants/Colors";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -33,21 +32,47 @@ export default function App() {
   }
   function BottemTabs() {
     return (
-      <Tab.Navigator>
+      <Tab.Navigator
+        screenOptions={{
+          tabBarActiveTintColor: Colors.highlight1,
+          tabBarStyle: {
+            height: 70,
+            backgroundColor: Colors.background1,
+            paddingBottom: 10,
+            borderTopWidth: 0,
+          },
+          headerShown: false,
+        }}
+      >
         <Tab.Screen
           name="AllTimeExpanses"
           component={AllTimeExpanses}
-          options={{ title: "All Time" }}
+          options={{
+            title: "All Time",
+            tabBarIcon: ({ color, size }) => (
+              <AntDesign name="clockcircleo" size={size} color={color} />
+            ),
+          }}
         />
         <Tab.Screen
           name="AddExpanse"
           component={AddExpanseScreen}
-          options={{ title: "Add" }}
+          options={{
+            title: "Add",
+            tabBarIcon: ({ color, size }) => (
+              <AntDesign name="pluscircleo" size={size} color={color} />
+            ),
+          }}
         />
         <Tab.Screen
           name="RecentExpanses"
           component={RecentExpanses}
-          options={{ title: "Past 7 Days" }}
+          options={{
+            title: "Past 7 Days",
+            tabBarIcon: ({ color, size }) => (
+              <AntDesign name="hourglass" size={size} color={color} />
+            ),
+          }}
         />
       </Tab.Navigator>
     );
@@ -67,7 +92,6 @@ export default function App() {
             name="AllExpansesScreen"
             component={AllExpansesScreen}
           />
-          <Stack.Screen name="AddExpanseScreen" component={AddExpanseScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

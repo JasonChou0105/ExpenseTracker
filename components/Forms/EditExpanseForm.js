@@ -59,13 +59,14 @@ function EditExpanseForm({ id, setModalVisible }) {
   return (
     <View style={styles.rootContainer}>
       <BackButton setModalVisible={setModalVisible}/>
-      <RemoveButton id={id} name={data.name}/>
+      <RemoveButton id={id} name={data.name} setModelVisable={setModalVisible}/>
       <Form
         submitHandle={editExpanseHandle}
         setParams={setParams}
         resetParams={resetParams}
         title="Edit Expense"
         buttonTitle="Confirm Edit"
+        setModalVisable={setModalVisible}
         data={data}
       />
     </View>

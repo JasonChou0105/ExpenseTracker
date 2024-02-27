@@ -43,7 +43,6 @@ function AddExpanseForm() {
 
   return (
     <View style={styles.rootContainer}>
-      <BackButton />
       <Form
         submitHandle={addExpanseHandle}
         setParams={setParams}

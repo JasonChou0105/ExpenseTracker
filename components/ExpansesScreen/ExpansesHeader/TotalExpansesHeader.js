@@ -40,12 +40,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 16,
   },
-  searchContainer: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 24,
-  },
 });
 
 export default TotalExpansesHeader;

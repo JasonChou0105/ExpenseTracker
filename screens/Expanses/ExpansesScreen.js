@@ -6,9 +6,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { setStartDate } from "../../store/date";
 import getMinDate from "../../helperFunctions/getMinDate";
 import { useEffect } from "react";
+import Header from "../../components/ExpansesScreen/Header";
 
 
-function ExpansesScreen() {
+function ExpansesScreen({title}) {
   const expanses = useSelector((state) => state.expanses.expanses);
   const dispatch = useDispatch()
 
@@ -27,6 +28,7 @@ function ExpansesScreen() {
   }, [dispatch, expanses]);
   return (
     <Background>
+      <Header>{title}</Header>
       <View style={styles.container}>
         <TotalExpansesHeader
           totalExpanses={total}
