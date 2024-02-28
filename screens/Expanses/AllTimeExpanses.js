@@ -27,7 +27,7 @@ function AllTimeExpanses() {
     };
   }, [expanses, navigation]);
 
-  return <ExpansesScreen title="All Time" />;
+  return <ExpansesScreen />;
 }
 
 export default AllTimeExpanses;

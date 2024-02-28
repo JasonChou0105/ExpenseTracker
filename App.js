@@ -41,7 +41,13 @@ export default function App() {
             paddingBottom: 10,
             borderTopWidth: 0,
           },
-          headerShown: false,
+          headerStyle: {
+            backgroundColor: Colors.background4,
+            borderBottomWidth: 1,
+          },
+          headerTitleStyle: {
+            color: "#ffffff",
+          },
         }}
       >
         <Tab.Screen
@@ -81,7 +87,18 @@ export default function App() {
     <Provider store={store}>
       <StatusBar style="light" />
       <NavigationContainer>
-        <Stack.Navigator>
+        <Stack.Navigator
+          screenOptions={{
+            headerStyle: {
+              backgroundColor: Colors.background4,
+              borderBottomWidth: 1,
+            },
+            headerTitleStyle: {
+              color: "#ffffff",
+            },
+            headerTintColor: "#ffffff",
+          }}
+        >
           <Stack.Screen
             name="BottemTabs"
             component={BottemTabs}
@@ -90,6 +107,7 @@ export default function App() {
 
           <Stack.Screen
             name="AllExpansesScreen"
+            options={{ title: 'All Expenses' }}
             component={AllExpansesScreen}
           />
         </Stack.Navigator>

@@ -31,6 +31,7 @@ function AddExpanseForm() {
   function addExpanseHandle() {
     console.log(params.id);
     if (params.name && params.price > 0) {
+      params.price = Math.round(params.price * 100) / 100
       dispatch(
         addExpanse({
           params: params,

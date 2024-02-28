@@ -2,13 +2,10 @@ import { FlatList, View, StyleSheet, Text, Modal } from "react-native";
 import ExpansesItem from "./ExpanseItem";
 import AllExpansesButton from "./AllExpansesButton";
 import AddExpanseButton from "./AddExpanseButton";
-import { useSelector } from "react-redux";
-import getDateValue from "../../../helperFunctions/getDateValue";
 import EditExpanseScreen from "../../../screens/Forms/EditExpanseScreen";
 import { useState } from "react";
 
 function ExpansesList({ data, renderAll }) {
-  const dates = useSelector((state) => state.date.date);
   const [modalVisible, setModalVisible] = useState(false);
   const [ID, setID] = useState();
 
@@ -21,13 +18,6 @@ function ExpansesList({ data, renderAll }) {
     setID(id);
   }
 
-  data = data.filter((item) => {
-    const itemVal = getDateValue(item.date);
-    return (
-      itemVal >= getDateValue(dates.startDate) &&
-      itemVal <= getDateValue(dates.endDate)
-    );
-  });
   return (
     <View style={styles.rootContainer}>
       <Modal

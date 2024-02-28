@@ -20,9 +20,9 @@ function EditExpanseForm({ id, setModalVisible }) {
       id: expanse.id,
     };
   }
-  console.log(data);
 
   var params = { ...data };
+  console.log(params);
 
   function setParams(expanseName, expansePrice, date) {
     params = {
@@ -43,8 +43,8 @@ function EditExpanseForm({ id, setModalVisible }) {
 
   //adding expanse to redux state
   function editExpanseHandle() {
-    console.log(params.name);
     if (params.name && params.price > 0) {
+      params.price = Math.round(params.price * 100) / 100
       dispatch(
         editExpanse({
           id: id,

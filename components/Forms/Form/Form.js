@@ -33,7 +33,9 @@ function Form({
       setExpanseDate(data.date);
     }
   }, [data]);
+
   setParams(null, null, date);
+  console.log("eqwfe", expansePrice);
 
   function onNumberInputChange(text) {
     setExpansePrice(text);
@@ -90,7 +92,7 @@ function Form({
       <FormInput
         type="price"
         title="Expense Price"
-        value={expansePrice}
+        value={expansePrice&&expansePrice.toString()}
         onChangeHandle={onNumberInputChange}
       />
       <FormInput

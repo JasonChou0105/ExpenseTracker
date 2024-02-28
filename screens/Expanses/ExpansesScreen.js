@@ -3,20 +3,18 @@ import ExpansesList from "../../components/ExpansesScreen/ExpansesList/ExpansesL
 import Background from "../../components/Backgrounds/Background";
 import TotalExpansesHeader from "../../components/ExpansesScreen/ExpansesHeader/TotalExpansesHeader";
 import { useDispatch, useSelector } from "react-redux";
-import { setStartDate } from "../../store/date";
+import date, { setStartDate } from "../../store/date";
 import getMinDate from "../../helperFunctions/getMinDate";
 import { useEffect } from "react";
-import Header from "../../components/ExpansesScreen/Header";
+import getDateValue from "../../helperFunctions/getDateValue";
 
 
-function ExpansesScreen({title}) {
+function ExpansesScreen() {
   const expanses = useSelector((state) => state.expanses.expanses);
+  const dates = useSelector((state) => state.date.date);
   const dispatch = useDispatch()
 
-  const total = expanses.reduce(
-    (curTotal, curExpanse) => curTotal + parseFloat(curExpanse.price),
-    0
-  );
+
   useEffect(() => {
     if (expanses.length > 0) {
       dispatch(
@@ -26,14 +24,24 @@ function ExpansesScreen({title}) {
       );
     }
   }, [dispatch, expanses]);
+  data = expanses.filter((item) => {
+    const itemVal = getDateValue(item.date);
+    return (
+      itemVal >= getDateValue(dates.startDate) &&
+      itemVal <= getDateValue(dates.endDate)
+    );
+  });
+  const total = data.reduce(
+    (curTotal, curExpanse) => curTotal + parseFloat(curExpanse.price),
+    0
+  );
   return (
     <Background>
-      <Header>{title}</Header>
       <View style={styles.container}>
         <TotalExpansesHeader
           totalExpanses={total}
         />
-        <ExpansesList data={expanses} renderAll={true} />
+        <ExpansesList data={data} renderAll={true} />
       </View>
     </Background>
   );
