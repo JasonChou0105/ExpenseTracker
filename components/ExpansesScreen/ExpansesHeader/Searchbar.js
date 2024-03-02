@@ -2,11 +2,11 @@ import { TextInput, StyleSheet, View } from "react-native";
 import { Entypo } from "@expo/vector-icons";
 import Colors from "../../../constants/Colors";
 
-function SearchBar() {
+function SearchBar({onChange}) {
   return (
     <View style={styles.rootContainer}>
-      <Entypo name="magnifying-glass" size={20} color="black" />
-      <TextInput style={styles.searchBar} placeholder="Search Expenses" />
+      <Entypo name="magnifying-glass" size={17} color="black" />
+      <TextInput style={styles.searchBar} placeholder="Search Expenses" onChangeText={onChange}/>
     </View>
   );
 }
@@ -20,10 +20,11 @@ const styles = StyleSheet.create({
     height: 40,
     alignItems: "center",
     padding: 10,
-    marginHorizontal: 8
+    margin: 16
   },
   searchBar: {
     fontSize: 15,
+    marginLeft: 4
   },
 });
 

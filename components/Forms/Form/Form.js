@@ -6,6 +6,7 @@ import SubmitButton from "./SubmitButton";
 import { useState, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import DateSelector from "../../DateSelector";
+import InvalidText from "./InvalidText";
 
 function Form({
   setParams,
@@ -25,6 +26,9 @@ function Form({
   const [expanseDate, setExpanseDate] = useState(date.toDateString());
 
   const [datePickerActive, setDatePickerActive] = useState(false);
+  
+  const [validName, setValidName] = useState(true);
+  const [validPrice, setValidPrice] = useState(true);
 
   useEffect(() => {
     if (data) {
@@ -40,10 +44,12 @@ function Form({
   function onNumberInputChange(text) {
     setExpansePrice(text);
     setParams(null, text, null);
+    setValidPrice(true)
   }
   function onTextInputChange(text) {
     setExpanseName(text);
     setParams(text, null, null);
+    setValidName(true);
   }
   function onChangeDate({ type }, selectedDate) {
     if (type == "set") {
@@ -59,7 +65,8 @@ function Form({
     }
   }
   function submitHandleWithReset() {
-    if (submitHandle()) {
+    if (expanseName.trim() && expansePrice > 0 && !isNaN(expansePrice)) {
+      submitHandle();
       setExpanseName("");
       setExpansePrice("");
       setExpanseDate(new Date().toDateString())
@@ -69,6 +76,12 @@ function Form({
       }else{
         navigation.goBack();
       }
+    }
+    if(!expanseName.trim()){
+      setValidName(false);
+    }
+    if(expansePrice <= 0 || !expansePrice || isNaN(expansePrice)){
+      setValidPrice(false);
     }
   }
   //date picker
@@ -89,12 +102,18 @@ function Form({
         value={expanseName}
         onChangeHandle={onTextInputChange}
       />
+      {!validName && (
+        <InvalidText> Please fill out this box</InvalidText>
+      )}
       <FormInput
         type="price"
         title="Expense Price"
         value={expansePrice&&expansePrice.toString()}
         onChangeHandle={onNumberInputChange}
       />
+      {!validPrice && (
+        <InvalidText> Price has to be a positive number</InvalidText>
+      )}
       <FormInput
         type="date"
         title="Date of Purchase"

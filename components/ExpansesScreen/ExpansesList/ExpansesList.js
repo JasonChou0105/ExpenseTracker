@@ -13,7 +13,6 @@ function ExpansesList({ data, renderAll }) {
     return <ExpansesItem expanse={itemData.item} onPressHandle={onPress} />;
   }
   function onPress(id) {
-    console.log(id);
     setModalVisible(true);
     setID(id);
   }

@@ -9,6 +9,7 @@ const Colors = {
     background8: "#c8c5e8",
     backgroundSecondary1: "#6a1010",
     backgroundSecondary2: "#400606",
+    error: "#d80000",
     highlight1: "#1cbfff",
     gradient1: "#2f53e3",
     gradient2: "#0ef3e0"

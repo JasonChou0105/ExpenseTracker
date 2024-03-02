@@ -3,17 +3,48 @@ import ExpansesList from "../../components/ExpansesScreen/ExpansesList/ExpansesL
 import Background from "../../components/Backgrounds/Background";
 import { View, StyleSheet, SafeAreaView } from "react-native";
 import TimeRange from "../../components/ExpansesScreen/ExpansesHeader/TimeRange";
+import SearchBar from "../../components/ExpansesScreen/ExpansesHeader/Searchbar";
+import getDateValue from "../../helperFunctions/getDateValue";
+import { useState } from "react";
 
 function AllExpansesScreen() {
   const expanses = useSelector((state) => state.expanses.expanses);
   const dates = useSelector((state) => state.date.date);
-
+  const [data, setData] = useState(dataTemp);
+  dataTemp = expanses.filter((item) => {
+    const itemVal = getDateValue(item.date);
+    return (
+      itemVal >= getDateValue(dates.startDate) &&
+      itemVal <= getDateValue(dates.endDate)
+    );
+  });
+  function onChange(text){
+    if(text.trim()){
+      var newData = [];
+      for(var i of dataTemp){
+        add = true;
+        for(var j = 0; j < text.length; j++){
+          if(i.name[j]!=text[j]){
+            add = false;
+            break;
+          }
+        }
+        if(add){
+          newData.push(i)
+        }
+        setData(newData)
+      }
+    } else {
+      setData(dataTemp)
+    }
+  }
   return (
     <Background>
       <SafeAreaView style={styles.container}>
         <View style={styles.listContainer}>
+          <SearchBar onChange={onChange}/>
           <TimeRange startDate={dates.startDate} endDate={dates.endDate} />
-          <ExpansesList data={expanses} renderAll={false} />
+          <ExpansesList data={data} renderAll={false} />
         </View>
       </SafeAreaView>
     </Background>

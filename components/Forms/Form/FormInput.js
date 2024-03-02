@@ -48,7 +48,8 @@ function FormInput({ type, title, onChangeHandle, value, toggleDatePicker }) {
 const styles = StyleSheet.create({
   rootContainer: {
     width: "90%",
-    margin: 16,
+    margin: 8,
+    marginTop: 16
   },
   iconContainer: {
     borderRightWidth: 1,

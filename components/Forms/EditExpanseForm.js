@@ -43,7 +43,6 @@ function EditExpanseForm({ id, setModalVisible }) {
 
   //adding expanse to redux state
   function editExpanseHandle() {
-    if (params.name && params.price > 0) {
       params.price = Math.round(params.price * 100) / 100
       dispatch(
         editExpanse({
@@ -51,9 +50,6 @@ function EditExpanseForm({ id, setModalVisible }) {
           params: params,
         })
       );
-      return true;
-    }
-    return false;
   }
 
   return (
