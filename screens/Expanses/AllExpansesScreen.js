@@ -10,18 +10,12 @@ import { useState } from "react";
 function AllExpansesScreen() {
   const expanses = useSelector((state) => state.expanses.expanses);
   const dates = useSelector((state) => state.date.date);
-  const [data, setData] = useState(dataTemp);
-  dataTemp = expanses.filter((item) => {
-    const itemVal = getDateValue(item.date);
-    return (
-      itemVal >= getDateValue(dates.startDate) &&
-      itemVal <= getDateValue(dates.endDate)
-    );
-  });
+  const [data, setData] = useState(expanses);
+
   function onChange(text){
     if(text.trim()){
       var newData = [];
-      for(var i of dataTemp){
+      for(var i of expanses){
         add = true;
         for(var j = 0; j < text.length; j++){
           if(i.name[j]!=text[j]){
@@ -35,7 +29,7 @@ function AllExpansesScreen() {
         setData(newData)
       }
     } else {
-      setData(dataTemp)
+      setData(expanses)
     }
   }
   return (
